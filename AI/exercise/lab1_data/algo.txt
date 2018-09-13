@@ -1,0 +1,19 @@
+pre: a record and the word table
+post: the term frequency for the record
+
+get_TF( record , word_table)
+for word in record.words:
+   for ele in word_table:
+      if ele == word: TF[ele.index] += 1/len(word)
+         break
+         
+
+pre: TF , line num
+post: the line idf
+
+get_IDF( TF , num ):
+IDF = []
+for l in TF[line]:
+   if l is not zero:
+	count the number of lines that is not zero in this col
+   idf[l] = log( |d| / (1+count) £©
