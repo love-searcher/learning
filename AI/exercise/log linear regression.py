@@ -7,6 +7,7 @@ def log_linear_regression():
 	x = data[:,-3:-2].copy()
 	y = data[:,-2:-1].copy()
 
+	# calculate the corresponding k and bias
 	y = np.log(y) # log
 	k,b = linear_regression( x, y)
 
@@ -21,15 +22,15 @@ def linear_regression( x, y):
 	
 	k = (x.T @y + x_mean*y_mean*x.size)/(x.T @x + x.size*x_mean**2)
 	bias = y_mean - k*x_mean
-	return k[0][0],bias[0][0]
+	return k[0][0],bias[0][0]   # here, the number is enough
 
 def plt_result( x , y , k , b ):
-	x1 = np.linspace( x.min() , x.max() , 100)
+	x1 = np.linspace( x.min() , x.max() , 100) # attention x.min is a function
 	y1 = x1*k+b
 	plt.plot( x , y , 'o' ,x1,y1)
 	plt.title('log linear regression')
-	plt.xlabel('密度')
-	plt.ylabel('含糖率')
+	plt.xlabel('density')
+	plt.ylabel('sugar')
 	plt.show()
  
 	
