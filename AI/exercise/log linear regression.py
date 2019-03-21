@@ -4,8 +4,8 @@ from matplotlib import pyplot as plt
 def log_linear_regression():
 	# read data, only the two attributes are useful here.
 	data = np.loadtxt("watermelon3.txt")
-	x = data[:,-3:-2].copy()
-	y = data[:,-2:-1].copy()
+	x = data[:,-3].copy()
+	y = data[:,-2].copy()
 
 	# calculate the corresponding k and bias
 	y = np.log(y) # log
@@ -22,7 +22,7 @@ def linear_regression( x, y):
 	
 	k = (x.T @y + x_mean*y_mean*x.size)/(x.T @x + x.size*x_mean**2)
 	bias = y_mean - k*x_mean
-	return k[0][0],bias[0][0]   # here, the number is enough
+	return k,bias
 
 def plt_result( x , y , k , b ):
 	x1 = np.linspace( x.min() , x.max() , 100) # attention x.min is a function
