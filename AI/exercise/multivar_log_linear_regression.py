@@ -8,15 +8,15 @@ using gradient ascent to converge
 def grad_ascent( data_mat , label_mat ):
 	m,n = data_mat.shape
 	
-	alpha = 0.1
-	max_iteration = 500
+	alpha = 0.01
+	max_iteration = 5000
 	weights = np.ones((n,1))
 
 	for k in range( max_iteration ):
 		a = data_mat @ weights # (17,3)*(3,1)
-		h = 1/(1+np.exp(-1*a)) # (17,1)
-		error = (label_mat-h) # (17,1)
-		weights = weights+alpha*(data_mat.T @ error)  #this is the corresponding derivative
+#		h = 1/(1+np.exp(-1*a)) # (17,1)
+		error = (label_mat-a) # (17,1)
+		weights = weights+alpha*(data_mat.T @ error)
 	return weights
 	
 def display( data_mat, label_mat, weights):
@@ -35,7 +35,7 @@ def display( data_mat, label_mat, weights):
 	plt.plot( x_cord1,y_cord1,'bo',x_cord2,y_cord2,'ro')
 #	plt.axis( [0,1,0,1])
 	x = np.arange(0.2,0.8,0.1)
-	y = -1*(weights[0]*x+weights[2]-0.5)/weights[1]
+	y = -1*(weights[0]*x+weights[2]-0.5)/weights[1] #两个类的分界0.5不一定合适哦？
 	plt.plot( x , y )
 	plt.xlabel( 'density' )
 	plt.ylabel( 'ratio_suger' )
